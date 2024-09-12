@@ -31,31 +31,51 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <header id="header">
     <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
+
+// plaats deze code in de main.php en vervang daarmee de standaard menu
+
+NavBar::begin([
+  
+ // hier wordt het type en de stijl van de menu bepaald
+   'brandLabel' => Yii::$app->name,  // de naam van het menu
+   'brandUrl' => Yii::$app->homeUrl, // de home page waar je naar toe gaat als je op de naam klikt
+   'options' => [
+      'class' => 'navbar-expand-md navbar-dark bg-dark fixed-top',
+    ],
+  
+]);
+              
+              
+echo Nav::widget([
+  
+  // hier worden de menu's en menu items bepaald
+    'options' => ['class' => 'navbar-nav navbar-right'],
+    'items' => [
+        [ 'label' => 'Country',
+            'items' => [
+                ['label' => 'Overzicht', 'url' => ['/country/index', ''] ],
+                ['label' => 'Voeg toe', 'url' => ['/country/index', ''] ],
+                ['label' => 'Europa', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Europe'] ],
+                ['label' => 'Asia', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Asia'] ],
+                ['label' => 'North America', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'North America'] ],
+                ['label' => 'South America', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'South America'] ],
+                ['label' => 'Afrika', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Afrika'] ],
+                ['label' => 'Oceania', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Oceania'] ],
+                ['label' => 'Antartica', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Antartica'] ],
+            ],
+        ],
+        [ 'label' => 'City',
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-        ]
-    ]);
-    NavBar::end();
-    ?>
+            ['label' => 'Overzicht', 'url' => ['/city/index', ''] ],
+            ['label' => 'Voeg toe', 'url' => ['/city/index', ''] ],
+
+        ],
+    ],
+    ],
+]);
+              
+NavBar::end();
+?> 
 </header>
 
 <main id="main" class="flex-shrink-0" role="main">

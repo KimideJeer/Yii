@@ -1,6 +1,8 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
+/* Include debug functions */
+require_once(__DIR__ . '/functions.php');
 $db = require __DIR__ . '/db.php';
 
 $config = [
@@ -42,14 +44,13 @@ $config = [
             ],
         ],
         'db' => $db,
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
         ],
-        
+
     ],
     'params' => $params,
 ];

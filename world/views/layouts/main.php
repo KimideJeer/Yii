@@ -62,6 +62,7 @@ echo Nav::widget([
                 ['label' => 'Afrika', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Afrika'] ],
                 ['label' => 'Oceania', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Oceania'] ],
                 ['label' => 'Antartica', 'url' => ['/country/index', 'CountrySearch[Continent]' => 'Antartica'] ],
+                ['label' => 'Overzicht', 'url' => ['/country/overzicht', ''] ],
             ],
         ],
         [ 'label' => 'City',

@@ -128,12 +128,13 @@ class CountryController extends Controller
         if (($model = Country::findOne(['Code' => $Code])) !== null) {
             return $model;
         }
-        
+
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionHello() {
+    public function actionHello()
+    {
         echo "Hello World!";
         exit;
     }
@@ -143,14 +144,22 @@ class CountryController extends Controller
         // Kimi de Jeer.
         // Dit is de query, dit is te vergelijken met select * from Country
         $countries = Country::find()->all();
-      
-       // De code hieronder genereert de html, dit noemt men de view binnen MVC (model view controller).
+
+        // De code hieronder genereert de html, dit noemt men de view binnen MVC (model view controller).
         // Zoals je kunt zien geven we de $countries array door aan de "overzicht" view. 
         // In de overzicht View kunnen we nu $countries gebruiken.
-    
+
         return $this->render('overzicht', [
             'countries' => $countries,
         ]);
     }
-}
 
+
+    public function actionOverzichtEuropa()
+    {
+        $countries = country::find()->where(['Continent' => 'Europe'])->orderBy(['SurfaceArea' => SORT_DESC])->all();
+        return $this->render('overzicht-europa', [
+            'countries' => $countries,
+        ]);
+    }
+}

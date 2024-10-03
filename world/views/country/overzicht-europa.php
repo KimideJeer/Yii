@@ -15,6 +15,8 @@
 <th>Hoofdstad</th>
 <th></th>
 <th>Oppervlakte</th>
+<th></th>
+<th>Taal</th>
 </tr>
         <?php
         foreach ($countries as $country) {
@@ -23,6 +25,7 @@
             echo "<td>" . $country->Name . "<td>";
             echo "<td><a href='http://localhost:8080/city/view?id=" . $country->hoofdstad->ID . "'>" . $country->hoofdstad->Name. "</a><td>";
             echo "<td>" . $country->SurfaceArea . "<td>";
+            echo "<td>" . $country->countrylanguages[0]->Language . "<td>";
             echo "</tr>";
         }
         //Kimi de Jeer

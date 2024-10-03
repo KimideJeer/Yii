@@ -19,13 +19,13 @@
         <?php
         foreach ($countries as $country) {
 
-            
             echo "<tr>";
             echo "<td>" . $country->Name . "<td>";
-            echo "<td>" . $country->hoofdstad->Name . "<td>";
+            echo "<td><a href='http://localhost:8080/city/view?id=" . $country->hoofdstad->ID . "'>" . $country->hoofdstad->Name. "</a><td>";
             echo "<td>" . $country->SurfaceArea . "<td>";
             echo "</tr>";
         }
+        //Kimi de Jeer
         ?>
     </table>
 </body>

@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style> 
+        tr{
+            border: 1px solid black;
+        }
+        td{
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +37,7 @@
             ?>
             <td>
             <?php foreach ($country->countrylanguages as $taal): ?>
-                <?= $taal->Language ?> <br/>
+                <?= $taal->Language ?> (<?= $taal->Percentage ?>%)<br/>
             <?php endforeach; ?>
             </td>
             <?php

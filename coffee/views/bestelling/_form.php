@@ -12,8 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'medewerker_id')->textInput() ?>
-
+    <?= $form->field($model, 'medewerker_id')->dropDownList([ '1'=> 'Toby', '2'=> 'Efe','3'=> 'Nizamettin','4'=> 'Mostafa','5'=> 'Ayman' ], ['prompt' => '']) ?>
+    
     <?= $form->field($model, 'naam')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'menu_id')->textInput() ?>

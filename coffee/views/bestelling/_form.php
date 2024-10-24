@@ -2,18 +2,19 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
 /** @var yii\web\View $this */
 /** @var app\models\Bestelling $model */
 /** @var yii\widgets\ActiveForm $form */
-?>
 
+?>
+<?php $medewerkerList = ArrayHelper::map($medewerkers,'id','naam'); ?>
 <div class="bestelling-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'medewerker_id')->dropDownList([ '1'=> 'Toby', '2'=> 'Efe','3'=> 'Nizamettin','4'=> 'Mostafa','5'=> 'Ayman' ], ['prompt' => '']) ?>
-    
+    <?= $form->field($model, 'medewerker_id')->dropDownList($medewerkerList, ['prompt' => ''])->label('Medewerker') ?>
+
     <?= $form->field($model, 'naam')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'menu_id')->textInput() ?>
@@ -27,5 +28,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-<?php // Kimi de Jeer?>
+<?php // Kimi de Jeer ?>
 </div>

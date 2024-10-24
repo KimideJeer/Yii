@@ -2,16 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Country;
-use app\models\CountrySearch;
+use app\models\Medewerker;
+use app\models\MedewerkerSearcher;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CountryController implements the CRUD actions for Country model.
+ * MedewerkerController implements the CRUD actions for Medewerker model.
  */
-class CountryController extends Controller
+class MedewerkerController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class CountryController extends Controller
     }
 
     /**
-     * Lists all Country models.
+     * Lists all Medewerker models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new CountrySearch();
+        $searchModel = new MedewerkerSearcher();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,30 +48,30 @@ class CountryController extends Controller
     }
 
     /**
-     * Displays a single Country model.
-     * @param string $Code Code
+     * Displays a single Medewerker model.
+     * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($Code)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($Code),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Country model.
+     * Creates a new Medewerker model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Country();
+        $model = new Medewerker();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'Code' => $model->Code]);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -83,18 +83,18 @@ class CountryController extends Controller
     }
 
     /**
-     * Updates an existing Country model.
+     * Updates an existing Medewerker model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $Code Code
+     * @param int $id ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($Code)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($Code);
+        $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Code' => $model->Code]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -103,63 +103,32 @@ class CountryController extends Controller
     }
 
     /**
-     * Deletes an existing Country model.
+     * Deletes an existing Medewerker model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $Code Code
+     * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($Code)
+    public function actionDelete($id)
     {
-        $this->findModel($Code)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Country model based on its primary key value.
+     * Finds the Medewerker model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $Code Code
-     * @return Country the loaded model
+     * @param int $id ID
+     * @return Medewerker the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($Code)
+    protected function findModel($id)
     {
-        if (($model = Country::findOne(['Code' => $Code])) !== null) {
+        if (($model = Medewerker::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
-
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function actionHello()
-    {
-        echo "Hello World!";
-        exit;
-    }
-
-    public function actionOverzicht()
-    {
-        // Kimi de Jeer.
-        // Dit is de query, dit is te vergelijken met select * from Country
-        $countries = Country::find()->all();
-
-        // De code hieronder genereert de html, dit noemt men de view binnen MVC (model view controller).
-        // Zoals je kunt zien geven we de $countries array door aan de "overzicht" view. 
-        // In de overzicht View kunnen we nu $countries gebruiken.
-
-        return $this->render('overzicht', [
-            'countries' => $countries,
-        ]);
-    }
-
-
-    public function actionOverzichtEuropa()
-    {
-        $countries = country::find()->where(['Continent' => 'Europe'])->andWhere(['<', 'SurfaceArea', 100000])->orderBy(['SurfaceArea' => SORT_DESC])->all();
-        return $this->render('overzicht-europa', [
-            'countries' => $countries,
-        ]); 
     }
 }

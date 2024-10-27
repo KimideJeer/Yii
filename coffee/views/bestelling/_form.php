@@ -9,6 +9,7 @@ use yii\helpers\ArrayHelper;
 
 ?>
 <?php $medewerkerList = ArrayHelper::map($medewerkers,'id','naam'); ?>
+<?php $menuList = ArrayHelper::map($menu,'id','naam'); ?>
 <div class="bestelling-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -17,7 +18,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'naam')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'menu_id')->textInput() ?>
+    <?= $form->field($model, 'id')->label('Menu')->dropDownList($menuList, ['prompt' => '']) ?>
 
     <?= $form->field($model, 'status')->dropDownList([ 'besteld' => 'Besteld', 'klaar' => 'Klaar', 'geleverd' => 'Geleverd', ], ['prompt' => '']) ?>
 

@@ -9,18 +9,18 @@ use yii\helpers\ArrayHelper;
 
 ?>
 <?php $medewerkerList = ArrayHelper::map($medewerkers,'id','naam'); ?>
-<?php $menuList = ArrayHelper::map($menu,'id','naam','prijs'); ?>
+<?php $menuList = ArrayHelper::map($menu,'id','naam'); ?>
 <div class="bestelling-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'medewerker_id')->dropDownList($medewerkerList, ['prompt' => ''])->label('Medewerker') ?>
 
-    <?= $form->field($model, 'naam')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'naam')->textInput(['maxlength' => true])->label('Klantnaam') ?>
 
-    <?= $form->field($model, 'id')->label('Menu')->dropDownList($menuList, ['prompt' => '']) ?>
+    <?= $form->field($model, 'id')->label('Bestelling')->dropDownList($menuList, ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([ 'besteld' => 'Besteld', 'klaar' => 'Klaar', 'geleverd' => 'Geleverd', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList([ 'besteld' => 'Besteld', 'klaar' => 'Klaar', 'geleverd' => 'Geleverd', ], ['prompt' => ''])->label('Status Bestelling') ?>
 
     <!--<?= $form->field($model, 'timestamp')->textInput() ?> -->
 

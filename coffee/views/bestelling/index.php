@@ -1,16 +1,19 @@
 <?php
 
-use app\models\Bestelling;
+use app\models\Menu;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use app\models\Bestelling;
+use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\models\BestellingSearcher $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
-/** @var array $medewerkerList */ // Ontvang de lijst van medewerkers
+/** @var array $medewerkerList */
+/** @var array $menuList */
 
 $this->title = 'Bestellings';
 $this->params['breadcrumbs'][] = $this->title;
@@ -45,9 +48,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['prompt' => 'Selecteer Medewerker', 'class' => 'form-control']
                 ),
             ],
+            [
+                'attribute' => 'menu_id',
+                'label' => 'Bestelling', // Verander de label naar 'Bestelling'
+                'value' => function ($model) {
+                    return $model->menu ? $model->menu->naam : 'N/A'; 
+                },
+                'filter' => Html::activeDropDownList(
+                    $searchModel,
+                    'menu_id',
+                    $menuList,
+                    ['prompt' => 'Selecteer Menu', 'class' => 'form-control']
+                ),
+            ],
             'naam',
-            'menu_id',
             'status',
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Bestelling $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                }
+            ],
             // //'timestamp',
             // [
             //     'class' => ActionColumn::className(),

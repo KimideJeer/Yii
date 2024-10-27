@@ -45,14 +45,15 @@ class BestellingController extends Controller
         $searchModel = new BestellingSearcher();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        // Haal medewerkers op en bereid een dropdown lijst voor
-        $medewerkers = Medewerker::find()->all();
-        $medewerkerList = ArrayHelper::map($medewerkers, 'id', 'naam');
+        // Haal medewerkers en menu's op
+        $medewerkerList = ArrayHelper::map(Medewerker::find()->all(), 'id', 'naam');
+        $menuList = ArrayHelper::map(Menu::find()->all(), 'id', 'naam'); // Zorg ervoor dat je dit hier hebt toegevoegd
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'medewerkerList' => $medewerkerList, // Zorg ervoor dat deze variabele hier wordt doorgegeven
+            'medewerkerList' => $medewerkerList,
+            'menuList' => $menuList, // Voeg dit toe
         ]);
     }
 

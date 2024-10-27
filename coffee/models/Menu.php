@@ -33,6 +33,10 @@ class Menu extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getBestellingen()
+    {
+        return $this->hasMany(Bestelling::className(), ['menu_id' => 'id']);
+    }
     /**
      * {@inheritdoc}
      */

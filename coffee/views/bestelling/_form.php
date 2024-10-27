@@ -18,8 +18,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'naam')->textInput(['maxlength' => true])->label('Klantnaam') ?>
 
-    <?= $form->field($model, 'id')->label('Bestelling')->dropDownList($menuList, ['prompt' => '']) ?>
-
+    <?= $form->field($model, 'menu_id')->label('Bestelling')->dropDownList($menuList, ['prompt' => '']) ?>
+    
     <?= $form->field($model, 'status')->dropDownList([ 'besteld' => 'Besteld', 'klaar' => 'Klaar', 'geleverd' => 'Geleverd', ], ['prompt' => ''])->label('Status Bestelling') ?>
 
     <!--<?= $form->field($model, 'timestamp')->textInput() ?> -->

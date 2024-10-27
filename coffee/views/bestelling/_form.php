@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 
 ?>
 <?php $medewerkerList = ArrayHelper::map($medewerkers,'id','naam'); ?>
-<?php $menuList = ArrayHelper::map($menu,'id','naam'); ?>
+<?php $menuList = ArrayHelper::map($menu,'id','naam','prijs'); ?>
 <div class="bestelling-form">
 
     <?php $form = ActiveForm::begin(); ?>

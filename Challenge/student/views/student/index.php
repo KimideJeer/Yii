@@ -10,16 +10,14 @@ use yii\grid\GridView;
 /** @var app\models\StudentSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Students';
+$this->title = 'Overzicht studenten die te laat waren';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Student', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -41,9 +39,17 @@ $this->params['breadcrumbs'][] = $this->title;
                  }
             ],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
-<?php 
-echo $hoogste;
-?>
+<p>
+        <?= Html::a('Create Student', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+<table>
+    <h3>Statistieken</h3>
+    <p>Hoogste aantal minuten te laat:<?php echo $hoogste;?></p>
+    <p>Gemiddelde aantal minuten te laat:<?php echo $gemiddelde;?></p>
+    <p>Totaal aantal minuten te laat:<?php echo $totaal;?></p>
+</table>
 </div>

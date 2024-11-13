@@ -40,10 +40,13 @@ class StudentController extends Controller
     {
         $searchModel = new StudentSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        $hoogste=111;
-        $gemiddelde=222;
-        $totaal=333;
-        $sql="select max(minuten_te_laat) as hoogste, avg(minuten_te_laat) as gemiddelde, sum(minuten_te_laat) as totaal from student";
+        $sql="select max(minuten_te_laat) as hoogste, avg(minuten_te_laat) as gemiddelde, sum(minuten_te_laat) as totaal from student";// maakt een sql query aan
+        $results = Yii::$app->db->createCommand($sql)->queryOne(); // Doet de resultaten van de query in een variabele
+        $hoogste=$results['hoogste']; // maakt de variable hoogste aan met het resultaat max(minuten_te_laat)
+        $gemiddelde=$results['gemiddelde']; // maakt de varibale gemiddelde aan met het resultaat avg(minuten_te_laat)
+        $totaal=$results['totaal']; // maakt de variabele totaal aan met het resultaat sum(minuten_te_laat)
+
+
 $result = Yii::$app->db->createCommand($sql)->queryOne();
 
         return $this->render('index', [
